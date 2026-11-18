@@ -18,12 +18,12 @@ if [[ -d "$DIR" ]]; then
     for PLIK in *.log; do
         [[ -f "$PLIK" ]] || continue
         ILE=$(grep -c 'ERROR' "$PLIK")
-        if [[ "$ILE" -ge 2 ]]; then
-            STATUS="ALARM"
+        if [[ "$ILE" -ge 2 ]] then
+            STATUS='ALARM'
         else
-            STATUS="OK"
+            STATUS='OK'
         fi
-        printf '%s;%s;%s\n' "$PLIK" "$ILE" "$STATUS"
+        printf '%s;%s_ERROR;STATUS %s\n' "$PLIK" "$ILE" "$STATUS"
     done
 else
     echo 'Brak katalogu' >&2
